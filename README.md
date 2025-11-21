@@ -1,4 +1,4 @@
-# Ghassen Nefzi - Portfolio Website
+# med aziz  - Portfolio Website
 
 A modern, fully responsive portfolio website built with Next.js 13+, TypeScript, and TailwindCSS.
 
