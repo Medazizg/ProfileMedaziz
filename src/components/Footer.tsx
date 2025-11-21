@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,10 +17,12 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold gradient-text mb-4">Ghassen Nefzi</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-4">
+              Mohamed aziz Gtari
+            </h3>
             <p className="text-gray-400 leading-relaxed">
-              Full Stack Web Developer passionate about creating amazing web experiences 
-              with modern technologies.
+              Full Stack Web Developer passionate about creating amazing web
+              experiences with modern technologies.
             </p>
           </motion.div>
 
@@ -33,14 +35,16 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+              {["Home", "About", "Projects", "Contact"].map((item) => (
                 <li key={item}>
                   <motion.button
                     whileHover={{ x: 5 }}
                     onClick={() => {
-                      const element = document.getElementById(item.toLowerCase());
+                      const element = document.getElementById(
+                        item.toLowerCase()
+                      );
                       if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
+                        element.scrollIntoView({ behavior: "smooth" });
                       }
                     }}
                     className="text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer"
@@ -61,14 +65,14 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold mb-4">Get In Touch</h4>
             <div className="space-y-2">
-              <p className="text-gray-400">your-email@example.com</p>
+              <p className="text-gray-400">gtariaziz4@gmail.com</p>
               <p className="text-gray-400">Tunisia</p>
             </div>
-            
+
             {/* Social Links */}
             <div className="flex space-x-4 mt-4">
               <motion.a
-                href="https://github.com/nefzighassen2"
+                href="https://github.com/Medazizg"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 5 }}
@@ -78,7 +82,7 @@ const Footer = () => {
                 <Github size={24} />
               </motion.a>
               <motion.a
-                href="https://www.linkedin.com/in/ghassen-nefzi"
+                href="https://www.linkedin.com/in/mohamedazizgtari"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: -5 }}
@@ -88,7 +92,7 @@ const Footer = () => {
                 <Linkedin size={24} />
               </motion.a>
               <motion.a
-                href="mailto:your-email@example.com"
+                href="mailto:gtariaziz4@gmail.com"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 className="text-gray-400 hover:text-red-400 transition-colors duration-200"
@@ -108,7 +112,7 @@ const Footer = () => {
           className="border-t border-gray-800 pt-8 text-center"
         >
           <p className="text-gray-400 flex items-center justify-center space-x-2">
-            <span>© {currentYear} Ghassen Nefzi. Made with</span>
+            <span>© {currentYear} med aziz gtari. Made with</span>
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity }}

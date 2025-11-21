@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ExternalLink, Github, Eye } from 'lucide-react';
-import { projects } from '@/data/projects';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { ExternalLink, Github, Eye } from "lucide-react";
+import { projects } from "@/data/projects";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Projects = () => {
   const { t } = useLanguage();
-  
+
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,12 +21,15 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-            {t('projects.title')}
+            {t("projects.title")}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills in web development, 
-            from e-commerce platforms to healthcare applications.
+            A selection of my latest projects showcasing my ability to build
+            elegant interfaces, high-performance applications, and real-world
+            digital solutions. From luxury car rentals to healthcare systems and
+            trading tools, these projects reflect my versatility across web and
+            mobile development.
           </p>
         </motion.div>
 
@@ -37,9 +40,9 @@ const Projects = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
+              whileHover={{
                 y: -10,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
               viewport={{ once: true }}
               className="group"
@@ -54,7 +57,7 @@ const Projects = () => {
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex space-x-4">
@@ -99,7 +102,7 @@ const Projects = () => {
                   <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                     {project.description}
                   </p>
-                  
+
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
@@ -123,7 +126,7 @@ const Projects = () => {
                       className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-center py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2"
                     >
                       <ExternalLink size={16} />
-                      <span>{t('projects.demo')}</span>
+                      <span>{t("projects.demo")}</span>
                     </motion.a>
                     <motion.a
                       href={project.codeUrl}
@@ -134,7 +137,7 @@ const Projects = () => {
                       className="flex-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white text-center py-2 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2"
                     >
                       <Github size={16} />
-                      <span>{t('projects.code')}</span>
+                      <span>{t("projects.code")}</span>
                     </motion.a>
                   </div>
                 </div>

@@ -1,38 +1,44 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
   const { t } = useLanguage();
-  
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
       // Initialize EmailJS with your public key
-      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "your_public_key_here");
-      
+      emailjs.init(
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "your_public_key_here"
+      );
+
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "your_service_id_here",
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "your_template_id_here",
@@ -41,15 +47,15 @@ const Contact = () => {
           from_email: formData.email,
           message: formData.message,
           to_email: "Gtariaziz4@gmail.com",
-          reply_to: formData.email
+          reply_to: formData.email,
         }
       );
 
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error('EmailJS error:', error);
-      setSubmitStatus('error');
+      console.error("EmailJS error:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -66,11 +72,11 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-            {t('contact.title')}
+            {t("contact.title")}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            {t('contact.description')}
+            {t("contact.description")}
           </p>
         </motion.div>
 
@@ -85,9 +91,9 @@ const Contact = () => {
           >
             <div className="glass rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
-                {t('contact.subtitle')}
+                {t("contact.subtitle")}
               </h3>
-              
+
               <div className="space-y-6">
                 <motion.div
                   whileHover={{ x: 10 }}
@@ -97,8 +103,12 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">{t('contact.email')}</p>
-                    <p className="text-gray-800 dark:text-white font-medium">Gtariaziz4@gmail.com</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      {t("contact.email")}
+                    </p>
+                    <p className="text-gray-800 dark:text-white font-medium">
+                      Gtariaziz4@gmail.com
+                    </p>
                   </div>
                 </motion.div>
 
@@ -110,8 +120,12 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">{t('contact.phone')}</p>
-                    <p className="text-gray-800 dark:text-white font-medium">+216 55 253 197</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      {t("contact.phone")}
+                    </p>
+                    <p className="text-gray-800 dark:text-white font-medium">
+                      +216 55 253 197
+                    </p>
                   </div>
                 </motion.div>
 
@@ -123,8 +137,12 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">{t('contact.location')}</p>
-                    <p className="text-gray-800 dark:text-white font-medium">Medjez El Bab, Béja, Tunisia</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      {t("contact.location")}
+                    </p>
+                    <p className="text-gray-800 dark:text-white font-medium">
+                      Medjez El Bab, Béja, Tunisia
+                    </p>
                   </div>
                 </motion.div>
               </div>
@@ -169,13 +187,16 @@ const Contact = () => {
           >
             <div className="glass rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
-                {t('contact.form.send')}
+                {t("contact.form.send")}
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.form.name')}
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
+                    {t("contact.form.name")}
                   </label>
                   <input
                     type="text"
@@ -185,13 +206,16 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
-                    placeholder={t('contact.form.name')}
+                    placeholder={t("contact.form.name")}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.form.email')}
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
+                    {t("contact.form.email")}
                   </label>
                   <input
                     type="email"
@@ -201,13 +225,16 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
-                    placeholder={t('contact.form.email')}
+                    placeholder={t("contact.form.email")}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.form.message')}
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
+                    {t("contact.form.message")}
                   </label>
                   <textarea
                     id="message"
@@ -217,7 +244,7 @@ const Contact = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white resize-none"
-                    placeholder={t('contact.form.message')}
+                    placeholder={t("contact.form.message")}
                   />
                 </div>
 
@@ -236,13 +263,13 @@ const Contact = () => {
                   ) : (
                     <>
                       <Send size={20} />
-                      <span>{t('contact.form.send')}</span>
+                      <span>{t("contact.form.send")}</span>
                     </>
                   )}
                 </motion.button>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -252,13 +279,14 @@ const Contact = () => {
                   </motion.div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-red-600 dark:text-red-400 text-center font-medium"
                   >
-                    Failed to send message. Please try again or contact me directly.
+                    Failed to send message. Please try again or contact me
+                    directly.
                   </motion.div>
                 )}
               </form>
