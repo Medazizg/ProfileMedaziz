@@ -105,13 +105,14 @@ const Projects = () => {
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span
+                    {project.technologies.map((tech: string, index: number) => (
+                      <motion.span
                         key={tech}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm rounded-full font-medium"
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
 

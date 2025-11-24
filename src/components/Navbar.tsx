@@ -13,18 +13,15 @@ const Navbar = () => {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
   };
@@ -48,7 +45,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* Logo */}
+          {/* LOGO */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold gradient-text cursor-pointer"
@@ -57,7 +54,7 @@ const Navbar = () => {
             MAG
           </motion.div>
 
-          {/* Desktop Navigation */}
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <motion.button
@@ -71,7 +68,7 @@ const Navbar = () => {
               </motion.button>
             ))}
 
-            {/* Download CV */}
+            {/* CV BUTTON */}
             <motion.a
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -83,12 +80,12 @@ const Navbar = () => {
               <span>CV</span>
             </motion.a>
 
-            {/* Language Toggle */}
+            {/* LANGUAGE */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setLanguage(language === "en" ? "fr" : "en")}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 flex items-center space-x-1"
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 flex items-center gap-1"
             >
               <Globe size={16} />
               <span className="text-sm font-medium">
@@ -96,33 +93,29 @@ const Navbar = () => {
               </span>
             </motion.button>
 
-            {/* Theme Toggle */}
+            {/* THEME */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
             >
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE MENU BUTTONS */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* Language */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setLanguage(language === "en" ? "fr" : "en")}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 flex items-center space-x-1"
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center gap-1 text-gray-700 dark:text-gray-300"
             >
               <Globe size={14} />
-              <span className="text-xs font-medium">
-                {language.toUpperCase()}
-              </span>
+              <span className="text-xs">{language.toUpperCase()}</span>
             </motion.button>
 
-            {/* Theme */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -132,7 +125,6 @@ const Navbar = () => {
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
 
-            {/* Menu */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -144,12 +136,11 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
             className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-lg mt-2 py-4 shadow-lg"
           >
             {navItems.map((item) => (
@@ -164,13 +155,13 @@ const Navbar = () => {
               </motion.button>
             ))}
 
-            {/* Mobile — Download CV */}
+            {/* MOBILE CV BUTTON (FIXED) */}
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="/cv.pdf"
               download
-              className="block w-full px-4 py-2 text-blue-600 dark:text-blue-400 font-medium flex items-center gap-2"
+              className="flex w-full px-4 py-2 text-blue-600 dark:text-blue-400 font-medium items-center gap-2"
             >
               <FileDown size={18} />
               CV
